@@ -10,6 +10,14 @@ class puppet::gentoo (
     content => 'app-admin/puppet vim-syntax augeas diff ldap'
   }
   
+  file { '/etc/portage/package.use/10_puppet__openldap':
+    content => 'net-nds/openldap minimal'
+  }
+  
+  file { '/etc/portage/package.keywords/10_puppet__puppet-infra-project':
+    content => '=app-admin/puppet-infra-project-0.4.97 ~amd64'
+  }
+  
   case $puppet_mode {
     3 : {
       file {'/etc/portage/package.keywords/10_puppet':
