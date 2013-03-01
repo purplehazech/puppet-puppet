@@ -7,12 +7,20 @@
 #   where to find the puppetmaster (defaults to puppet)
 # [*::puppet_master*]
 #   set to true if the box is a master
+# [*::puppet_mode*]
+#   used for differentiating puppet 3 installs from older installs
 #
 class puppet inherits puppet::params {
   # @todo also change in win tpl
   $pluginsync = $puppet_pluginsync
-
-  include gem
+  
+  case $::operatingsystem {
+    Gentoo  : {
+      class{ 'puppet::gentoo':
+        puppet_mode => $puppet_mode
+      }
+    }
+  }
 
   if $puppet_install {
     if $puppet_hiera_gem {
