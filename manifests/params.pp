@@ -26,7 +26,7 @@ class puppet::params {
       $puppet_master_install_dashboard          = false
       $puppet_dashboard_services                = ['puppet-dashboard']
       $puppet_storeconfig_provider              = 'activerecord'
-      $puppet_storeconfig_activerecord_packages = ['mysql-ruby']
+      $puppet_storeconfig_activerecord_packages = ['mysql-ruby', 'activerecord']
       $puppet_storeconfig_db_adapter            = 'mysql'
     }
     default : {
