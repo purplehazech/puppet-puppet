@@ -15,7 +15,11 @@ class puppet::gentoo (
   }
   
   file { '/etc/portage/package.keywords/10_puppet__puppet-infra-project':
-    content => '=app-admin/puppet-infra-project-0.4.97 ~amd64'
+    content => 'app-admin/puppet-infra-project ~amd64'
+  }
+  
+  file { '/etc/portage/package.use/10_puppet__activerecord':
+    content => 'dev-ruby/activerecord mysql'
   }
   
   case $puppet_mode {
