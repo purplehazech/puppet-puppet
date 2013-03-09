@@ -1,0 +1,35 @@
+{
+  "name": "purplehazech-puppet",
+  "author": "Lucas S. Bickel",
+  "description": "Manages puppetmaster and puppet agent configurations.",
+  "license": "AGPL",
+  "project_page": "https://github.com/purplehazech/puppet-infra-project",
+  "source": "https://github.com/purplehazech/puppet-infra-project/tree/master/modules/puppet",
+  "summary": "module for managing puppetmaster and agents",
+  "version": "0.0.1",
+  "checksums": {
+    "Modulefile": "d21289e12b268e51204b2b80667d12a4",
+    "README.rdoc": "56f6a08297bb4927f692467f38a46c4d",
+    "files/gentoo-portage.keywords": "f6aa6a49303a36d041294734f36a064e",
+    "manifests/dashboard.pp": "9584919b9f28ccb02e15fa4d1a2f7080",
+    "manifests/gentoo.pp": "cf8bb063825eab130c6bdcc97cdec3ae",
+    "manifests/hiera.pp": "54a45e9af2b739c174010d29132fdabe",
+    "manifests/init.pp": "dc19304b854d9daca57c27f5539dcdae",
+    "manifests/master.pp": "89af6d394477862f38c2c12bc68dd55a",
+    "manifests/params.pp": "382b8be20fcba8fb900be9a0e68a22a9",
+    "manifests/puppetdb.pp": "dd30c7f6af1cb78b067580a53257b805",
+    "manifests/storeconfig.pp": "980eb62fb68aa6eb27eaa3fc49bb92bc",
+    "templates/dashboard_database.yaml.erb": "269f37bcecc844bb9b4b05cb440343da",
+    "templates/hiera.yaml.erb": "69295f7f549accc9420dc0c621dc458d",
+    "templates/puppet.conf.erb": "09786b71e477843883536821632708a3",
+    "templates/puppet.conf.win.erb": "069a5dc73b29b70a18ee7463632864d8",
+    "templates/puppetdb.conf.erb": "bbdf82e8d4611de0aa902a5634c917ce",
+    "templates/routes.yaml.erb": "58102239f304fae24a3e6140df1f4b98"
+  },
+  "dependencies": [
+    {
+      "name": "purplehazech/activerecord",
+      "version_requirement": "\u003e\u003d0.1.0"
+    }
+  ]
+}
