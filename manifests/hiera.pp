@@ -5,7 +5,9 @@
 # I still need to rollut hiera, this is just a smallish start
 #
 class puppet::hiera inherits puppet::params {
-  file { '/etc/hiera.yaml': content => template('puppet/hiera.yaml.erb') }
+  file { '/etc/puppet/hiera.yaml':
+    content => template('puppet/hiera.yaml.erb')
+  }
 
   package { 'hiera':
     ensure   => absent,
