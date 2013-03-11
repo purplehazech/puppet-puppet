@@ -16,9 +16,7 @@ class puppet inherits puppet::params {
   
   case $::operatingsystem {
     Gentoo  : {
-      class{ 'puppet::gentoo':
-        puppet_mode => $puppet_mode
-      }
+      include puppet::gentoo
     }
   }
 
