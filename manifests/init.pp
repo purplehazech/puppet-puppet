@@ -3,45 +3,47 @@
 # Install puppet on a box
 #
 # === Parameters:
-# [*::puppet_server*]
+# [*server*]
 #   where to find the puppetmaster (defaults to puppet)
-# [*::puppet_master*]
-#   set to true if the box is a master
-# [*::puppet_mode*]
-#   used for differentiating puppet 3 installs from older installs
+# [*install*]
+#   toggle installation of puppet packages
 #
-class puppet inherits puppet::params {
-  # @todo also change in win tpl
-  $pluginsync = $puppet_pluginsync
+class puppet (
+  $server = 'puppet',
+  $install = true
+) {
   
   case $::operatingsystem {
+    windows : {
+      $puppet_pluginsync    = false
+      $conf_file     = 'C:\Dokumente und Einstellungen\All Users\Anwendungsdaten\PuppetLabs\puppet\etc\puppet.conf'
+      $conf_template = 'puppet.conf.win.erb'
+    }
     Gentoo  : {
       include puppet::gentoo
+      $puppet_pluginsync    = false
+      $conf_file     = '/etc/puppet/puppet.conf'
+      $conf_template = 'puppet.conf.erb'
+    }
+  }
+  
+  # @todo also change in win tpl
+  $pluginsync = $puppet_pluginsync
+
+  if $install {
+    package { 'puppet': 
+      ensure => installed,
+      before => File[$conf_file]
     }
   }
 
-  if $puppet_install {
-    if $puppet_hiera_gem {
-      include puppet::hiera
-    }
-
-    package { 'puppet': ensure => installed }
-  }
-
-  if $::puppet_master {
-    include puppet::master
-
-    if $puppet_master_install_dashboard {
-      include puppet::dashboard
-
-    }
-  }
-
-  file { $puppet_conf_file:
-    content => template("puppet/${puppet_conf_template}"),
+  file { $conf_file:
+    content => template("puppet/${conf_template}"),
     notify  => Service['puppet']
   }
 
-  service { 'puppet': ensure => running }
+  service { 'puppet': 
+    ensure => running
+  }
 }
 
