@@ -40,7 +40,7 @@
 <% end %>
 <% if classes.include? 'puppet::couch' then %>
     node_terminus = exec
-    external_nodes = /etc/puppet/enc.rb <%= scope.lookupvar('puppet::couch::url') %>
+    external_nodes = /etc/puppet/enc.rb
 <% end %>
 
 <% end %><%# endof master %>

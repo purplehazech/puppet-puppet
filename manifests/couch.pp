@@ -18,4 +18,8 @@ class puppet::couch (
   file { '/etc/puppet/enc.rb':
     source => "puppet:///modules/puppet/couch-enc.rb"
   }
+  
+  file { '/etc/puppet/enc.yaml':
+    content => template('puppet/couch-enc.yaml.erb')
+  }
 }

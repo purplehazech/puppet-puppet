@@ -2,9 +2,11 @@
 require 'couchrest'
 require 'yaml'
 
-db = CouchRest.database! ARGV[0]
+config = YAML.load_file('/etc/puppet/enc.yaml')
 
-data = db.get(ARGV[1])
+db = CouchRest.database! config.values_at('url').first
+
+data = db.get(ARGV[0])
 
 data['classes'].each do |key,puppetClass|
   data['classes'][key] = nil unless not puppetClass.empty?
