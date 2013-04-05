@@ -1,32 +1,29 @@
 # == Class: puppet::master
 #
-# Class responsible for installing and configuring the puppet master.
+# Class responsible for configuring the puppet master.
 #
-class puppet::master inherits puppet::params {
-  include puppet::storeconfig
+class puppet::master (
+  $install = true
+) {
 
-  case $puppet_master_infra_version {
-    latest : {
-      package { 'puppet-infra-project': ensure => latest }
-      $puppet_master_infra_resource = Package['puppet-infra-project']
-    }
-    'git'  : {
-      # @todo implement autosyncing
-      $puppet_master_infra_resource = []
+  if $install {
+    package { 'puppet-master': 
+      ensure => latest
     }
   }
 
-  if $puppet_master_infra_resource {
-    $puppet_service_require = [File[$puppet_conf_file], $puppet_master_infra_resource]
-  } else {
-    $puppet_service_require = File[$puppet_conf_file]
+  # @todo refactor to something closer to git
+  package { 'puppet-infra-project': 
+    ensure => latest
   }
 
   service { 'puppetmaster':
     ensure  => running,
-    require => $puppet_service_require
+    require => [
+      Class['puppet'],
+      Class['puppet::storeconfig'],
+      Class['puppet::couch']
+    ]
   }
 
 }
-
-# EOF
