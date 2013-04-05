@@ -10,10 +10,10 @@
   "checksums": {
     "Modulefile": "d21289e12b268e51204b2b80667d12a4",
     "README.rdoc": "56f6a08297bb4927f692467f38a46c4d",
-    "files/couch-enc.rb": "ab9104b977dd4ff3f7ff378378a25acc",
+    "files/couch-enc.rb": "c75162789361abc13466adb2974d06cd",
     "files/gentoo-portage.keywords": "f6aa6a49303a36d041294734f36a064e",
     "lib/puppet/indirector/node/couch.rb": "f3e971a096731316b19495c931dd9a5e",
-    "manifests/couch.pp": "b2bfe44425e6a1c72e64197ab8433465",
+    "manifests/couch.pp": "2ce9f2ba5b77b332baf52aa30cf31ef6",
     "manifests/dashboard.pp": "9584919b9f28ccb02e15fa4d1a2f7080",
     "manifests/gentoo.pp": "832a966549bd1fdc4b647b0f2ec8a90a",
     "manifests/hiera.pp": "4808e3ea01cd49b14e7320b4fb6a046f",
@@ -24,7 +24,7 @@
     "manifests/storeconfig.pp": "6e642c9b182e44985a9fea398a426f5a",
     "templates/dashboard_database.yaml.erb": "269f37bcecc844bb9b4b05cb440343da",
     "templates/hiera.yaml.erb": "69295f7f549accc9420dc0c621dc458d",
-    "templates/puppet.conf.erb": "09786b71e477843883536821632708a3",
+    "templates/puppet.conf.erb": "faff239022617ff6a9b3bac7fe28a288",
     "templates/puppet.conf.win.erb": "069a5dc73b29b70a18ee7463632864d8",
     "templates/puppetdb.conf.erb": "bbdf82e8d4611de0aa902a5634c917ce",
     "templates/routes.yaml.erb": "58102239f304fae24a3e6140df1f4b98"
