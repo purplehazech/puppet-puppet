@@ -13,7 +13,7 @@
     "files/couch-enc.rb": "6b45e09c627d42c6e243a8201ade58c1",
     "files/gentoo-portage.keywords": "f6aa6a49303a36d041294734f36a064e",
     "lib/puppet/indirector/node/couch.rb": "f3e971a096731316b19495c931dd9a5e",
-    "manifests/couch.pp": "1efca575f13fc6d81a02833e2f0c8d30",
+    "manifests/couch.pp": "b024df649860f5e9ff38f901c5a9b9c3",
     "manifests/dashboard.pp": "9584919b9f28ccb02e15fa4d1a2f7080",
     "manifests/gentoo.pp": "832a966549bd1fdc4b647b0f2ec8a90a",
     "manifests/hiera.pp": "4808e3ea01cd49b14e7320b4fb6a046f",
