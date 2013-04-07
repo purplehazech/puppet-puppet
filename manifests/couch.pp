@@ -28,4 +28,6 @@ class puppet::couch (
     group   => 'puppet',
     mode    => '0550'
   }
+  
+  Class['puppet::couch'] -> Class['puppet']
 }
