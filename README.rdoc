@@ -1,19 +1,32 @@
 == Module: puppet
 
-Module that takes care of managing puppet and its agents. Get used by infra to ensure that a host is properly set up
-to use the puppetmaster.
+Manage puppet and it's agents.
 
 === Example:
 
-Install and setup a basic master.
+Install and setup a basic master with activerecord storeconfigs and CouchDB as ENC
 
   $puppet_server = '127.0.0.1'
   $puppet_master = true
-  class {'puppet': }
-
+  $puppet_storeconfig_provider = 'activerecord'
+  $puppet_storeconfig_db_adapter = 'mysql'
+  $puppet_storeconfig_db_user = 'root'
+  $puppet_storeconfig_db_password = ''
+  $puppet_storeconfig_db_server = 'localhost'
+  $puppet_storeconfig_db_name = 'puppet'
+  class {'puppet': 
+    server => '127.0.0.1'
+  }
+  class { 'puppet::couch':
+    url => 'http://127.0.0.1:5984/puppet'
+  }
+  class { 'puppet::master':
+  }
+ 
 Install on client.
 
   $puppet_server = 'puppet'
-  class {'puppet': }
-  
-The call syntax is due to change a soon as the ldap node terminus can be replaced.
+  class { 'puppet': }
+
+The toplevel variables are legacy stuff that has not been refactored since i got away
+from using ldap as node classifier.
