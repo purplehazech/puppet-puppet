@@ -15,13 +15,13 @@ data['classes'].each do |key,puppetClass|
   puppetClass.each do |valKey,valVal|
     data['classes'][key][valKey] = false unless valVal != "false"
     data['classes'][key][valKey] = true unless valVal != "true"
-  end
   
-  if valVal.is_a?(Hash)
-    valVal.each do |hashKey,hashVal|
-      hashVal.each do |hashValKey,innerVal|
-        data['classes'][key][valKey][hashKey][hashValKey] = false unless innerVal != "false"
-        data['classes'][key][valKey][hashKey][hashValKey] = true unless innerVal != "true"
+    if valVal.is_a?(Hash)
+      valVal.each do |hashKey,hashVal|
+        hashVal.each do |hashValKey,innerVal|
+          data['classes'][key][valKey][hashKey][hashValKey] = false unless innerVal != "false"
+          data['classes'][key][valKey][hashKey][hashValKey] = true unless innerVal != "true"
+        end
       end
     end
   end
