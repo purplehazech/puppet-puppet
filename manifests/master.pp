@@ -3,27 +3,27 @@
 # Class responsible for configuring the puppet master.
 #
 class puppet::master (
-  $install = true
+  $ensure => enabled,
 ) {
 
-  if $install {
-    package { 'puppet-master': 
-      ensure => latest
+  case $::operatingsystem {
+    # gentoo installs master through main package
+    Gentoo: {}
+    # others need packages
+    default: {
+      package { 'puppet-master': 
+        ensure => $ensure,
+      }
     }
-  }
-
-  # @todo refactor to something closer to git
-  package { 'puppet-infra-project': 
-    ensure => latest
   }
 
   service { 'puppetmaster':
     ensure  => running,
+    enabled => true,
     require => [
       Class['puppet'],
-      Class['puppet::storeconfig'],
-      Class['puppet::couch']
     ]
   }
 
 }
+
