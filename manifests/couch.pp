@@ -11,23 +11,25 @@
 class puppet::couch (
   $url
 ) {
+
   package { 'couchrest':
     provider => 'gem'
-  }
-  
-  file { '/etc/puppet/enc.rb':
+  } -> file { '/etc/puppet/enc.rb':
     source => "puppet:///modules/puppet/couch-enc.rb",
     owner  => 'root',
     group  => 'puppet',
     mode   => '0555'
-  }
-  
-  file { '/etc/puppet/enc.yaml':
+  } -> file { '/etc/puppet/enc.yaml':
     content => template('puppet/couch-enc.yaml.erb'),
     owner   => 'root',
     group   => 'puppet',
     mode    => '0550'
+  } -> augeas { 'puppetmaster-couch-enc':
+    context => '/files/etc/puppet/puppet.conf',
+    changes => [
+      'set master/node_terminus exec',
+      'set master/external_nodes /etc/puppet/enc.rb',
+    ],
   }
-  
-  Class['puppet::couch'] -> Class['puppet']
+
 }

@@ -11,39 +11,13 @@
     # The default value is '$confdir/ssl'.
     ssldir = $vardir/ssl
 
-    config = /etc/config/puppet.conf
+    config = /etc/puppet/puppet.conf
 
     pluginsync = <%= puppet_pluginsync %>
 
-    modulepath = $confdir/modules:/usr/share/puppet/modules:/usr/share/puppet-infra-project/modules
-    manifestdir = /usr/share/puppet-infra-project/manifests
+    modulepath = $confdir/modules:/usr/share/puppet/modules
  
-<% if has_variable?("puppet_master") && puppet_master == true then %>
 [master]
-    reports = store<% if has_variable?("puppet_http_reporturl") %>,http<% end %>
-<% if has_variable?("puppet_http_reporturl") %>
-    reporturl = <%= puppet_http_reporturl %>
-<% end %>
-<% if has_variable?("puppet_storeconfig_provider") then %>
-    storeconfigs = true
-<% if puppet_storeconfig_provider == "puppetdb" then %>
-    storeconfigs_backend = puppetdb
-<% end %>
-<% if puppet_storeconfig_provider == "activerecord" then %>
-
-    dbadapter  = <%= puppet_storeconfig_db_adapter %>
-    dbuser     = <%= puppet_storeconfig_db_user %>
-    dbpassword = <%= puppet_storeconfig_db_password %>
-    dbserver   = <%= puppet_storeconfig_db_server %>
-    dbname     = <%= puppet_storeconfig_db_name %>
-<% end %>
-<% end %>
-<% if classes.include? 'puppet::couch' then %>
-    node_terminus = exec
-    external_nodes = /etc/puppet/enc.rb
-<% end %>
-
-<% end %><%# endof master %>
 
 [agent]
     report = true
@@ -60,3 +34,4 @@
     # extension indicating the cache format is added automatically.
     # The default value is '$confdir/localconfig'.
     localconfig = $vardir/localconfig
+
